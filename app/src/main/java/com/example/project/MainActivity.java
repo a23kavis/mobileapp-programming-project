@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        String url = "https://mobprog.webug.se/json-api?login=a23kavis";
+        new JsonTask(this).execute(url);
+
         ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
 
                 new RecyclerViewItem("Mont Blanc"),
@@ -36,9 +39,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    @Override
     public void onPostExecute(String json) {
-
+        if (json != null) {
+            Toast.makeText(this, "JSON Data fetched", Toast.LENGTH_SHORT).show();
+       
+        } else {
+            Toast.makeText(this, "Failed to fetch JSON data", Toast.LENGTH_SHORT).show();
+        }
     }
-
 
 }
