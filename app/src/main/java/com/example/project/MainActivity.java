@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener{
@@ -74,12 +73,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 country.add(new RecyclerViewItem(name, location, size, auxdata));
             }
             // Sort the list by population (size) in descending order
-            Collections.sort(country, new Comparator<RecyclerViewItem>() {
-                @Override
-                public int compare(RecyclerViewItem item1, RecyclerViewItem item2) {
-                    return Integer.compare(item2.getSize(), item1.getSize());
-                }
-            });
+
 
             // Update the items list and notify the adapter
             items.clear();

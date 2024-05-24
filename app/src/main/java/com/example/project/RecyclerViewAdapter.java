@@ -40,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.locationTextView.setText("Continent: " + item.getLocation());
         holder.sizeTextView.setText("Population: " + item.getSize()+ " Million");
         Picasso.get().load(item.getImageView()).into(holder.imageView);
+
     }
 
 

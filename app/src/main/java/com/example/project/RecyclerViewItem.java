@@ -8,11 +8,11 @@ public class RecyclerViewItem {
     private int size;
     private String imageView;
 
-    public RecyclerViewItem(String name, String location, int size, String auxdata) {
+    public RecyclerViewItem(String name, String location, int size, String imageView) {
         this.name = name;
         this.location = location;
         this.size = size;
-        this.imageView = auxdata;
+        this.imageView = imageView;
     }
 
     public String getName() {
