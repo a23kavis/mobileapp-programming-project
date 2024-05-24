@@ -27,26 +27,31 @@
             line-height: 1.6;
             color: #666;
         }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #7f0000;
+            color: white;
+        }
     </style>
 </head>
 <body>
 <div class="content">
     <h1>Country top list</h1>
     <p> Welcome to my country app. It is designed to display information about countries in a descending list sorted by population.</p>
+   <p>The users of this app will be users who are interested in the world leading countries in terms of population.</p>
     <p>Features:</p>
     <ul>
-        <li>Data 1: Country Name as String</li>
+        <li>Data 1: Country Position as Int and Name as String</li>
         <li>Data 2: Location Data as String</li>
         <li>Data 3: Population Data as Int</li>
     </ul>
-    <button onclick="navigateToMainActivity()">Go to Main Activity</button>
+    <button onclick="Android.goToMainActivity()">Go to Main Activity</button>
 </div>
 
-<script>
-    function navigateToMainActivity() {
-        // This will call the Android function to navigate back to MainActivity
-        Android.goToMainActivity();
-    }
-</script>
 </body>
 </html>

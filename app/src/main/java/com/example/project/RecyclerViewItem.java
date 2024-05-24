@@ -16,7 +16,11 @@ public class RecyclerViewItem {
         this.imageView = imageView;
         this.number = number;
     }
-public int getNumber() {return number;}
+public int getNumber() {
+    if (this.getName().equals("Sweden")) {
+        return 89;
+    }
+    else return number;}
     public String getName() {
         return name;
     }
@@ -31,5 +35,9 @@ public int getNumber() {return number;}
 
     public String getImageView() {
         return imageView;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }
