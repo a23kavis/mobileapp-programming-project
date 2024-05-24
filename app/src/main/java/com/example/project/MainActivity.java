@@ -18,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
-                new RecyclerViewItem("Matterhorn"),
+
                 new RecyclerViewItem("Mont Blanc"),
-                new RecyclerViewItem("Denali")
+                new RecyclerViewItem("Denali"),
+                new RecyclerViewItem("Matterhorn")
         ));
 
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
@@ -35,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void onPostExecute(String json) {
 
+    }
 
 
 }
