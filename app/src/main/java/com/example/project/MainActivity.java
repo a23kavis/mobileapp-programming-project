@@ -73,14 +73,14 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             JSONArray jsonArray = new JSONArray(json);
 
             for (int i = 0; i < jsonArray.length(); i++) {
+                int number = i + 1; // Start numbering from 1
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String name = jsonObject.getString("name");
                 String location = jsonObject.getString("location");
                 int size = jsonObject.getInt("size");
                 String auxdata = jsonObject.getString("auxdata");
-
                 // Create a RecyclerViewItem object and add it to the list
-                country.add(new RecyclerViewItem(name, location, size, auxdata));
+                country.add(new RecyclerViewItem(number, name, location, size, auxdata));
             }
             // Sort the list by population (size) in descending order
 

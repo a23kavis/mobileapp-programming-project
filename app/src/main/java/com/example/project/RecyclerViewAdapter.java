@@ -36,7 +36,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RecyclerViewItem item = items.get(position);
 
         // Set the text of each TextView to display all the data
-        holder.nameTextView.setText("Country: " + item.getName());
+
+        holder.nameTextView.setText("Number: " + item.getNumber()+ "\n" + item.getName());
         holder.locationTextView.setText("Continent: " + item.getLocation());
         holder.sizeTextView.setText("Population: " + item.getSize()+ " Million");
         Picasso.get().load(item.getImageView()).into(holder.imageView);
