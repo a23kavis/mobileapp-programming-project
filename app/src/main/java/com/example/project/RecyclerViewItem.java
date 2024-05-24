@@ -6,13 +6,13 @@ public class RecyclerViewItem {
     private String name;
     private String location;
     private int size;
-    private String auxdata;
+    private String imageView;
 
     public RecyclerViewItem(String name, String location, int size, String auxdata) {
         this.name = name;
         this.location = location;
         this.size = size;
-        this.auxdata = auxdata;
+        this.imageView = auxdata;
     }
 
     public String getName() {
@@ -27,7 +27,7 @@ public class RecyclerViewItem {
         return size;
     }
 
-    public String getAuxdata() {
-        return auxdata;
+    public String getImageView() {
+        return imageView;
     }
 }
