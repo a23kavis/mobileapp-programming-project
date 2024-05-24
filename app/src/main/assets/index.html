@@ -39,7 +39,14 @@
         <li>Data 2: Location Data as String</li>
         <li>Data 3: Population Data as Int</li>
     </ul>
-
+    <button onclick="navigateToMainActivity()">Go to Main Activity</button>
 </div>
+
+<script>
+    function navigateToMainActivity() {
+        // This will call the Android function to navigate back to MainActivity
+        Android.goToMainActivity();
+    }
+</script>
 </body>
 </html>
