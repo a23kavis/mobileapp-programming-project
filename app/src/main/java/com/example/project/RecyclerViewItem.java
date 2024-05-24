@@ -3,20 +3,20 @@ package com.example.project;
 @SuppressWarnings("WeakerAccess")
 public class RecyclerViewItem {
 
-    private String title;
+    private String name;
     private String location;
     private int size;
     private String auxdata;
 
-    public RecyclerViewItem(String title, String location, int size, String auxdata) {
-        this.title = title;
+    public RecyclerViewItem(String name, String location, int size, String auxdata) {
+        this.name = name;
         this.location = location;
         this.size = size;
         this.auxdata = auxdata;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
     public String getLocation() {

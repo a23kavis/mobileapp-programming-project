@@ -4,8 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -29,10 +30,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new ViewHolder(layoutInflater.inflate(R.layout.recycler_view, parent, false));
     }
 
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.title.setText(items.get(position).getTitle());
+        RecyclerViewItem item = items.get(position);
+
+        // Set the text of each TextView to display all the data
+        holder.nameTextView.setText("Name: " + item.getName());
+        holder.locationTextView.setText("Location: " + item.getLocation());
+        holder.sizeTextView.setText("Size: " + item.getSize());
+        Picasso.get().load(item.getAuxdata()).into(holder.imageView);
     }
+
 
     @Override
     public int getItemCount() {
@@ -40,12 +49,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title;
+        TextView nameTextView;
+        TextView locationTextView;
+        TextView sizeTextView;
+        ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            title = itemView.findViewById(R.id.title);
+            nameTextView = itemView.findViewById(R.id.name_text_view);
+            locationTextView = itemView.findViewById(R.id.location_text_view);
+            sizeTextView = itemView.findViewById(R.id.size_text_view);
+            imageView = itemView.findViewById(R.id.image_view);
         }
 
         @Override

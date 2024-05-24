@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class JsonTask extends AsyncTask<String, String, String> {
+public class JsonTask extends AsyncTask<String, Void, String> {
 
     public interface JsonTaskListener {
         void onPostExecute(String json);
@@ -20,11 +20,11 @@ public class JsonTask extends AsyncTask<String, String, String> {
     private BufferedReader reader = null;
     private final JsonTaskListener listener;
 
-    @SuppressWarnings("deprecation")
     public JsonTask(JsonTaskListener listener) {
         this.listener = listener;
     }
 
+    @Override
     protected String doInBackground(String... params) {
         try {
             URL url = new URL(params[0]);
@@ -36,7 +36,7 @@ public class JsonTask extends AsyncTask<String, String, String> {
 
             StringBuilder builder = new StringBuilder();
             String line;
-            while ((line = reader.readLine()) != null && !isCancelled()) {
+            while ((line = reader.readLine()) != null) {
                 builder.append(line).append("\n");
             }
             return builder.toString();

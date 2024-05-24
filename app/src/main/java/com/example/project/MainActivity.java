@@ -1,25 +1,22 @@
 package com.example.project;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener{
     private RecyclerViewAdapter adapter;
-    private List<RecyclerViewItem> items = new ArrayList<>();
+    private List<RecyclerViewItem> items; // Declare but don't initialize yet
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,28 +26,27 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         String url = "https://mobprog.webug.se/json-api?login=a23kavis";
         new JsonTask(this).execute(url);
 
+        // Initialize items here
+        items = new ArrayList<>();
 
-
-         List<RecyclerViewItem> items = new ArrayList<>();
-         adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
-
+        adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, item.getName(), Toast.LENGTH_SHORT).show();
             }
         });
+
         RecyclerView view = findViewById(R.id.recycler_view);
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
     }
 
 
-
     @Override
     public void onPostExecute(String json) {
         if (json != null) {
-            Log.d("JsonTask", "JSON Data: " + json);
-            Toast.makeText(this, "JSON Data fetched", Toast.LENGTH_SHORT).show();
+
+
             // Process the JSON data
             List<RecyclerViewItem> processedItems = processJson(json);
             // Update the RecyclerView with the processed data
@@ -62,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         }
     }
     private List<RecyclerViewItem> processJson(String json) {
-        List<RecyclerViewItem> tempItems = new ArrayList<>();
+        List<RecyclerViewItem> country = new ArrayList<>();
 
         try {
             JSONArray jsonArray = new JSONArray(json);
@@ -75,12 +71,25 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 String auxdata = jsonObject.getString("auxdata");
 
                 // Create a RecyclerViewItem object and add it to the list
-                tempItems.add(new RecyclerViewItem(name, location, size, auxdata));
+                country.add(new RecyclerViewItem(name, location, size, auxdata));
             }
+            // Sort the list by population (size) in descending order
+            Collections.sort(country, new Comparator<RecyclerViewItem>() {
+                @Override
+                public int compare(RecyclerViewItem item1, RecyclerViewItem item2) {
+                    return Integer.compare(item2.getSize(), item1.getSize());
+                }
+            });
+
+            // Update the items list and notify the adapter
+            items.clear();
+            items.addAll(country);
+            adapter.notifyDataSetChanged();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return tempItems;
+        return country;
     }
 }
