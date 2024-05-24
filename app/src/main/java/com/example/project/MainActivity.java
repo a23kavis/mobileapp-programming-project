@@ -1,6 +1,9 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +25,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Button home_button = findViewById(R.id.about_button);
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intenthome = new Intent(MainActivity.this, AboutPage.class);
+                startActivity(intenthome);
+            }});
         String url = "https://mobprog.webug.se/json-api?login=a23kavis";
         new JsonTask(this).execute(url);
 
